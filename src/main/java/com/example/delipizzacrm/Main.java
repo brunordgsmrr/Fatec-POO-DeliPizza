@@ -23,7 +23,7 @@ public class Main {
             System.out.println("[1] Cadastrar cliente");
             System.out.println("[2] Cadastrar motoboy");
             System.out.println("[3] Nova avaliação");
-            System.out.println("[3] Nova avaliação");
+            System.out.println("[4] Consultar avaliações");
             System.out.println("\n[0] Sair");
             System.out.println("======================");
             System.out.println("\nDigite o numero da opção desejada:");
@@ -42,7 +42,7 @@ public class Main {
                     avaliacoesController.novaAvaliacao();
                     break;
                 case 4:
-                    //clienteController.cadastrar();
+                    avaliacoesController.consultarTodas();
                     break;
             }
 

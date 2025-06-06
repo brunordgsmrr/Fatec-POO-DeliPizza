@@ -68,4 +68,9 @@ public class Avaliacao {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    @Override
+    public String toString() {
+        return "|" + pedido.getId() + "|" + tipoAvaliador + "|" + idAvaliador +"|" + tipoAvaliado + "|" + idAvaliado +"|" + nota +"|" + comentario + "|\n";
+    }
 }

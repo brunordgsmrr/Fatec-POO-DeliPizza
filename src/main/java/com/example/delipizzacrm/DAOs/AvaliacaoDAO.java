@@ -2,10 +2,11 @@ package com.example.delipizzacrm.DAOs;
 
 import com.example.delipizzacrm.configs.DatabaseConnection;
 import com.example.delipizzacrm.models.Avaliacao;
+import com.example.delipizzacrm.models.Pedido;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AvaliacaoDAO {
 
@@ -29,6 +30,39 @@ public class AvaliacaoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Avaliacao> consultarTodos(){
+        String sql = "SELECT * FROM tb_avaliacoes;";
+        List<Avaliacao> avaliacaos = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConexao(); Statement st = conn.createStatement()) {
+
+            ResultSet result = st.executeQuery(sql);
+
+            while (result.next()){
+
+                Avaliacao avaliacao = new Avaliacao();
+                Pedido pedido = new Pedido();
+
+                pedido.setId(result.getInt("pedido_id"));
+
+                avaliacao.setPedido(pedido);
+                avaliacao.setTipoAvaliador(result.getString("avaliador"));
+                avaliacao.setIdAvaliador(result.getInt("avaliador_id"));
+                avaliacao.setTipoAvaliado(result.getString("avaliado"));
+                avaliacao.setIdAvaliado(result.getInt("avaliado_id"));
+                avaliacao.setNota(result.getInt("nota"));
+                avaliacao.setComentario(result.getString("comentario"));
+
+                avaliacaos.add(avaliacao);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return avaliacaos;
     }
 
 }

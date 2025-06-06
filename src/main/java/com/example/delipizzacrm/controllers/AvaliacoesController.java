@@ -15,7 +15,9 @@ public class AvaliacoesController {
     Pedido pedido;
     AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
 
-    public AvaliacoesController(Scanner sc){ this.sc = sc;}
+    public AvaliacoesController(Scanner sc){
+        this.sc = sc;
+    }
 
     public void novaAvaliacao(){
 
@@ -88,14 +90,29 @@ public class AvaliacoesController {
 
         avaliacao.setTipoAvaliador(avaliador);
         avaliacao.setIdAvaliador(idAvaliador);
+
         avaliacao.setTipoAvaliado(avaliado);
-        avaliacao.setIdAvaliador(idAvaliador);
+        avaliacao.setIdAvaliado(idAvaliado);
+
         pedido.setId(numPedido);
         avaliacao.setPedido(pedido);
         avaliacao.setComentario(comentario);
         avaliacao.setNota(nota);
 
         avaliacaoDAO.novaAvaliacao(avaliacao);
+    }
+
+
+
+    public void consultarTodas() {
+        List<Avaliacao> avaliacaos = avaliacaoDAO.consultarTodos();
+
+        for (Avaliacao avaliacao : avaliacaos){
+            System.out.println(avaliacao.toString());
+        }
+
+        System.out.println("\nPressione ENTER para continuar");
+        sc.nextLine();
     }
 
     public static void clearConsole(){
