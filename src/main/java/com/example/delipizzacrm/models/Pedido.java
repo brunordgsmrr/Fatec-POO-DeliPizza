@@ -7,18 +7,12 @@ public class Pedido {
     private int id;
     private String descricao;
     private Cliente cliente;
-    private Motoboy entregador;
+    private Motoboy motoboy;
     private LocalDate dtPedido;
 
     public Pedido(){
 
     };
-
-    public Pedido(String descricao, Cliente cliente, LocalDate dtPedido) {
-        this.descricao = descricao;
-        this.cliente = cliente;
-        this.dtPedido = dtPedido;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -37,12 +31,12 @@ public class Pedido {
     }
 
 
-    public Motoboy getEntregador() {
-        return entregador;
+    public Motoboy getMotoboy() {
+        return motoboy;
     }
 
-    public void setEntregador(Motoboy entregador) {
-        this.entregador = entregador;
+    public void setMotoboy(Motoboy motoboy) {
+        this.motoboy = motoboy;
     }
 
     public LocalDate getDtPedido() {

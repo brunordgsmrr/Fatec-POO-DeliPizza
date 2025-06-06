@@ -99,13 +99,19 @@ public class AvaliacoesController {
         avaliacao.setComentario(comentario);
         avaliacao.setNota(nota);
 
-        avaliacaoDAO.novaAvaliacao(avaliacao);
+        avaliacaoDAO.criar(avaliacao);
     }
 
 
 
     public void consultarTodas() {
         List<Avaliacao> avaliacaos = avaliacaoDAO.consultarTodos();
+        System.out.println("|\tID Pedido\t|\tAvaliador\t|\tID Avaliador\t|\tAvaliado\t|\tID Avaliado\t|\tNOTA\t|\t\t\t\tComentário\t\t\t\t|");
+
+        for (int i = 0; i < 136; i++){
+            System.out.print("-");
+        }
+        System.out.println();
 
         for (Avaliacao avaliacao : avaliacaos){
             System.out.println(avaliacao.toString());

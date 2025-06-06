@@ -8,8 +8,8 @@ import java.util.List;
 public interface IMotoboyDAO {
 
     void cadastrar(Motoboy motoboy);
-    void editar(Motoboy motoboy);
-    void deletar(Motoboy motoboy);
-    Pessoa consultar(Motoboy motoboy);
-    List<Pessoa> consultarTodos(Motoboy motoboy);
+    void excluir(int id);
+    List<Motoboy> consultarTodos();
+    //void editar(Motoboy motoboy);
+    //Pessoa consultar(Motoboy motoboy);
 }

@@ -1,9 +1,11 @@
 package com.example.delipizzacrm.controllers;
 
 import com.example.delipizzacrm.DAOs.ClienteDAO;
+import com.example.delipizzacrm.models.Avaliacao;
 import com.example.delipizzacrm.models.Cliente;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClienteController {
@@ -56,6 +58,38 @@ public class ClienteController {
         }
 
     }
+
+    public void consultarTodos(){
+        List<Cliente> clientes = clienteDAO.consultarTodos();
+        String header = String.format("| %-15s | %-15s | %-15s | %-15s | %-15s |", "ID Cliente", "Nome", "CPF", "Endereço", "Telefone");
+        System.out.println(header);
+
+        for (int i = 0; i < 90; i++){
+            System.out.print("-");
+        }
+        System.out.println();
+
+        for (Cliente cliente : clientes){
+            System.out.println(cliente.toString());
+        }
+
+        System.out.println("\nPressione ENTER para continuar");
+        sc.nextLine();
+    };
+
+    public void excluir(){
+        clearConsole();
+        consultarTodos();
+        int id;
+
+        System.out.println("\nEXCLUIR CLIENTE");
+        System.out.println("\nDigite o ID do cliente a ser excluido");
+        id = sc.nextInt();
+
+        clienteDAO.excluir(id);
+
+    }
+
 
     public static void clearConsole(){
         for (int i = 0; i < 50; i++) {

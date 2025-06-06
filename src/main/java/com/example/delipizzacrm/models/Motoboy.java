@@ -56,5 +56,11 @@ public class Motoboy extends Pessoa{
     public void setCorMoto(String corMoto) {
         this.corMoto = corMoto;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %-15d | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |",
+                getId(), getNome(), getCpf(), getTelefone(), placaMoto, marcaMoto, modeloMoto, corMoto);
+    }
 }
 

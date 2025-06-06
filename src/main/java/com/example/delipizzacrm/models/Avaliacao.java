@@ -1,6 +1,6 @@
 package com.example.delipizzacrm.models;
 
-public class Avaliacao {
+public class Avaliacao extends EntidadeDominio{
 
     private Pedido pedido;
     private String tipoAvaliador;
@@ -11,6 +11,7 @@ public class Avaliacao {
     private String comentario;
 
     public Avaliacao() {
+        super();
     }
 
     public Pedido getPedido() {
@@ -71,6 +72,7 @@ public class Avaliacao {
 
     @Override
     public String toString() {
-        return "|" + pedido.getId() + "|" + tipoAvaliador + "|" + idAvaliador +"|" + tipoAvaliado + "|" + idAvaliado +"|" + nota +"|" + comentario + "|\n";
+        return String.format("| %-14s | %-12s | %-17d | %-13s | %-13d | %-15d| %-40s |",
+                pedido.getId(), tipoAvaliador, idAvaliador, tipoAvaliado, idAvaliado, nota, comentario);
     }
 }

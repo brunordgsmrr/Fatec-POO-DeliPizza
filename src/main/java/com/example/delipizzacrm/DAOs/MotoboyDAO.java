@@ -1,12 +1,12 @@
 package com.example.delipizzacrm.DAOs;
 
 import com.example.delipizzacrm.configs.DatabaseConnection;
+import com.example.delipizzacrm.models.Cliente;
 import com.example.delipizzacrm.models.Motoboy;
 import com.example.delipizzacrm.models.Pessoa;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MotoboyDAO implements IMotoboyDAO{
@@ -35,22 +35,51 @@ public class MotoboyDAO implements IMotoboyDAO{
     }
 
     @Override
-    public void editar(Motoboy motoboy) {
+    public void excluir(int id) {
+        String sql = "DELETE FROM tb_motoboy WHERE id = ?;";
 
+        try (Connection conn = DatabaseConnection.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void deletar(Motoboy motoboy) {
-
-    }
 
     @Override
-    public Pessoa consultar(Motoboy motoboy) {
-        return null;
-    }
+    public List<Motoboy> consultarTodos() {
+        String sql = "SELECT * FROM tb_motoboy;";
+        List<Motoboy> motoboys = new ArrayList<>();
 
-    @Override
-    public List<Pessoa> consultarTodos(Motoboy motoboy) {
-        return List.of();
+        try (Connection conn = DatabaseConnection.getConexao(); Statement st = conn.createStatement()) {
+
+            ResultSet result = st.executeQuery(sql);
+
+            while (result.next()){
+
+                Motoboy motoboy = new Motoboy();
+
+                motoboy.setId(result.getInt("id"));
+                motoboy.setNome(result.getString("nome"));
+                motoboy.setCpf(result.getString("cpf"));
+                motoboy.setTelefone(result.getString("telefone"));
+
+                motoboy.setPlacaMoto(result.getString("placa_moto"));
+                motoboy.setMarcaMoto(result.getString("marca_moto"));
+                motoboy.setModeloMoto(result.getString("modelo_moto"));
+                motoboy.setCorMoto(result.getString("cor_moto"));
+
+                motoboys.add(motoboy);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return motoboys;
     }
 }

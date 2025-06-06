@@ -2,9 +2,15 @@ package com.example.delipizzacrm.controllers;
 
 import com.example.delipizzacrm.DAOs.ClienteDAO;
 import com.example.delipizzacrm.DAOs.MotoboyDAO;
+import com.example.delipizzacrm.configs.DatabaseConnection;
 import com.example.delipizzacrm.models.Cliente;
 import com.example.delipizzacrm.models.Motoboy;
+import com.example.delipizzacrm.utils.Console;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MotoboyController {
@@ -69,4 +75,40 @@ public class MotoboyController {
             e.printStackTrace();
         }
     }
+
+    public void consultarTodos(){
+        List<Motoboy> motoboys = motoboyDAO.consultarTodos();
+        String header = String.format("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |",
+                "ID Motoboy", "Nome", "CPF", "Telefone", "Placa da moto", "Marca da moto", "Modelo moto", "Cor moto");
+        System.out.println(header);
+
+        for (int i = 0; i < 145; i++){
+            System.out.print("-");
+        }
+        System.out.println();
+
+        for (Motoboy motoboy : motoboys){
+            System.out.println(motoboy.toString());
+        }
+
+        System.out.println("\nPressione ENTER para continuar");
+        sc.nextLine();
+    };
+
+    public void excluir(){
+        Console.clearConsole();
+        consultarTodos();
+        int id;
+
+        System.out.println("\nEXCLUIR MOTOBOY");
+        System.out.println("\nDigite o ID do MOTOBOY a ser excluido");
+        id = sc.nextInt();
+
+        motoboyDAO.excluir(id);
+
+    }
+
+
+
+
 }

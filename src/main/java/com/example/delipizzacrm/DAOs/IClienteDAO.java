@@ -8,8 +8,9 @@ import java.util.List;
 public interface IClienteDAO {
 
     void cadastrar(Cliente cliente);
+    void excluir(int id);
+    List<Cliente> consultarTodos();
     //void editar(Cliente cliente);
-    //void deletar(Cliente cliente);
     //Pessoa consultar(Cliente cliente);
-    //List<Pessoa> consultarTodos(Cliente cliente);
+
 }

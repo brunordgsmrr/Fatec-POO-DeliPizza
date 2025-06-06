@@ -22,4 +22,9 @@ public class Cliente extends Pessoa{
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %-15d | %-15s | %-15s | %-15s | %-15s |", getId(), getNome(), getCpf(), endereco, getTelefone());
+    }
 }

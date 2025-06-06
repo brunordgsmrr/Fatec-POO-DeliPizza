@@ -8,9 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AvaliacaoDAO {
+public class AvaliacaoDAO implements IAvaliacaoDAO {
 
-    public void novaAvaliacao(Avaliacao avaliacao){
+    @Override
+    public void criar(Avaliacao avaliacao){
         String sql = """
                 INSERT INTO tb_avaliacoes(pedido_id, avaliador, avaliador_id, avaliado, avaliado_id, nota, comentario)
                 VALUES (?, ?, ?, ?, ?, ?, ?);
@@ -32,6 +33,7 @@ public class AvaliacaoDAO {
         }
     }
 
+    @Override
     public List<Avaliacao> consultarTodos(){
         String sql = "SELECT * FROM tb_avaliacoes;";
         List<Avaliacao> avaliacaos = new ArrayList<>();
