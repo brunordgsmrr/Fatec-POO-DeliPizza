@@ -18,11 +18,4 @@ public class PedidoController {
         System.out.println("-");
     }
 
-    public static void clearConsole(){
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-    }
-
-
 }
